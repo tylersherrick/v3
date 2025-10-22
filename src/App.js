@@ -1,5 +1,8 @@
+import React from "react";
+import Home from "./pages/Home";
+
 function App() {
-  return <div>Sports Tracker v3</div>;
+  return <Home />;
 }
 
 export default App;
