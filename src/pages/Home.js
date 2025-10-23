@@ -6,8 +6,8 @@ import LeaguePage from "./LeaguePage";
 function Home() {
   const [selectedLeague, setSelectedLeague] = useState(null);
   const [currentWeeks, setCurrentWeeks] = useState({
-    nfl: 1,
-    cfb: 1,
+    nfl: 8,
+    cfb: 9,
   });
 
   if (selectedLeague) {
@@ -22,11 +22,11 @@ function Home() {
 
   return (
     <div>
-      <h1>Sports Tracker v3</h1>
+      <h1 className="title-text">Ty's Corner</h1>
       {Object.entries(leagues).map(([key, league]) => (
         <section key={key}>
           <h2
-            style={{ cursor: "pointer", color: "blue" }}
+            style={{ cursor: "pointer", color: "grey" }}
             onClick={() => setSelectedLeague(key)}
           >
             {league.name}

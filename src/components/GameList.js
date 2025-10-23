@@ -42,15 +42,15 @@ function GameList({ leagueKey, limit, currentWeek }) {
   }, [league.apiUrl, league.usesWeeks, currentWeek]);
 
   const displayedGames = limit ? games.slice(0, limit) : games;
-
+  console.log(games);
   if (loading) return <p>Loading games...</p>;
   if (error) return <p>Error: {error}</p>;
 
   return (
     <div>
       {displayedGames.map((game) => (
-        <div key={game.id || game.uid} style={{ marginBottom: "1rem" }}>
-          <span>{game.shortName || game.name}</span>
+        <div className="short-game" key={game.id || game.uid} style={{ marginBottom: "1rem" }}>
+          <span>{game.competitions[0].competitors[0].team.shortDisplayName} at {game.competitions[0].competitors[1].team.shortDisplayName} - {game.status.type.shortDetail}</span>
         </div>
       ))}
     </div>
