@@ -50,7 +50,7 @@ function GameList({ leagueKey, limit, currentWeek }) {
     <div>
       {displayedGames.map((game) => (
         <div className="short-game" key={game.id || game.uid} style={{ marginBottom: "1rem" }}>
-          <span>{game.competitions[0].competitors[0].team.shortDisplayName} at {game.competitions[0].competitors[1].team.shortDisplayName} - {game.status.type.shortDetail}</span>
+          <span>{game.competitions[0].competitors[1].team.shortDisplayName} at {game.competitions[0].competitors[0].team.shortDisplayName} - {game.status.type.shortDetail}</span>
         </div>
       ))}
     </div>
