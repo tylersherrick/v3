@@ -4,8 +4,15 @@
 
 .short-game {
   margin-left: 5%;
+  text-align: center;
 }
 
 .league-name {
   width: 25px;
+}
+
+.team-logo {
+  width: 30px;
+  height: 30px;
+  vertical-align: middle;
 }

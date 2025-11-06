@@ -50,10 +50,14 @@ function GameList({ leagueKey, limit, currentWeek, setSelectedGame }) {
         const comp = game.competitions[0];
         const away = comp.competitors[1].team.shortDisplayName;
         const home = comp.competitors[0].team.shortDisplayName;
-        const status = game.status?.type?.shortDetail || "TBD";
+        const shortAway = game.competitions[0].competitors[1].team.abbreviation;
+        const shortHome = game.competitions[0].competitors[0].team.abbreviation;
+        let status = game.status?.type?.shortDetail || "TBD";
         let awayScore = game.competitions[0].competitors[1].score;
         let homeScore = game.competitions[0].competitors[0].score;
         const gameStatus = game.competitions[0].status.type.name;
+        let homeLogo = game.competitions[0].competitors[0].team.logo;
+        let awayLogo = game.competitions[0].competitors[1].team.logo
         if(gameStatus != "STATUS_FINAL") {
           awayScore = "";
           homeScore = "";
@@ -66,9 +70,7 @@ function GameList({ leagueKey, limit, currentWeek, setSelectedGame }) {
             style={{ marginBottom: "1rem", cursor: "pointer" }}
             onClick={() => setSelectedGame && setSelectedGame(game)}
           >
-            <span>
-              {status} - {away} {awayScore} - {homeScore} {home} 
-            </span>
+            <span> <img src={awayLogo} className="team-logo"/> {shortAway} {awayScore} - {status} {homeScore} - {shortHome}  <img src={homeLogo} className="team-logo"/> </span>
           </div>
         );
       })}
