@@ -12,18 +12,6 @@ function GameList({ leagueKey, limit, currentWeek, setSelectedGame }) {
       setLoading(true);
       try {
         let url = league.apiUrl;
-
-        if (league.usesWeeks) {
-          url += `?week=${currentWeek}`;
-        } else {
-          const now = new Date().toLocaleString("en-US", { timeZone: "America/Chicago" });
-          const today = new Date(now);
-          const year = today.getFullYear();
-          const month = String(today.getMonth() + 1).padStart(2, "0");
-          const day = String(today.getDate()).padStart(2, "0");
-          url += `?dates=${year}${month}${day}`;
-        }
-
         const res = await fetch(url);
         if (!res.ok) throw new Error("Failed to fetch games");
         const data = await res.json();

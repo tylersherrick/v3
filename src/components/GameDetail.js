@@ -14,11 +14,11 @@ function GameDetail({ game, leagueName, onBackToLeague, onBackToMain }) {
       if (league.usesWeeks) {
         // NFL / CFB: find week from game date
         const gameDate = new Date(game.date);
-        const seasonStart = new Date("2025-09-02T00:00:00Z"); // adjust per league
+        const seasonStart = new Date("2025-09-04T00:00:00Z"); // adjust per league
         const diff = Math.floor(
           (gameDate - seasonStart) / (7 * 24 * 60 * 60 * 1000)
         );
-        const week = diff + 1;
+        const week = diff + 2;
         url += `?week=${week}`;
       } else {
         // MLB / NBA / NHL: date format YYYYMMDD
