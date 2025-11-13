@@ -10,8 +10,16 @@ function GameList({ leagueKey, limit, currentWeek, setSelectedGame }) {
   useEffect(() => {
     const fetchGames = async () => {
       setLoading(true);
+      const today = new Date();
+      const formatted = today.getFullYear().toString() +
+        String(today.getMonth() + 1).padStart(2, '0') +
+        String(today.getDate()).padStart(2, '0');
       try {
+        console.log(league.name);
         let url = league.apiUrl;
+        if(league.name === "NHL" || league.name === "NBA") {
+          url += `?dates=${formatted}`;
+        }
         const res = await fetch(url);
         if (!res.ok) throw new Error("Failed to fetch games");
         const data = await res.json();
@@ -29,6 +37,8 @@ function GameList({ leagueKey, limit, currentWeek, setSelectedGame }) {
   console.log(games);
   const displayedGames = limit ? games.slice(0, limit) : games;
 
+  
+
   if (loading) return <p>Loading games...</p>;
   if (error) return <p>Error: {error}</p>;
 
@@ -45,10 +55,24 @@ function GameList({ leagueKey, limit, currentWeek, setSelectedGame }) {
         let homeScore = game.competitions[0].competitors[0].score;
         const gameStatus = game.competitions[0].status.type.name;
         let homeLogo = game.competitions[0].competitors[0].team.logo;
-        let awayLogo = game.competitions[0].competitors[1].team.logo
+        let awayLogo = game.competitions[0].competitors[1].team.logo;
+        let date = game.competitions[0].date
+        const gameTimeLocal = date
+          ? new Date(date).toLocaleString(undefined, {
+              weekday: "short",
+              month: "short",
+              day: "numeric",
+              hour: "numeric",
+              minute: "2-digit",
+              hour12: true,
+            })
+          : "";
         if(gameStatus != "STATUS_FINAL") {
           awayScore = "";
           homeScore = "";
+        }
+        if(gameStatus === "STATUS_SCHEDULED") {
+          status = gameTimeLocal;
         }
 
         return (

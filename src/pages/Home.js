@@ -7,10 +7,6 @@ import GameDetail from "../components/GameDetail";
 function Home() {
   const [selectedLeague, setSelectedLeague] = useState(null);
   const [selectedGame, setSelectedGame] = useState(null);
-  const [currentWeeks, setCurrentWeeks] = useState({
-    nfl: 8,
-    cfb: 9,
-  });
 
   // ✅ If a single game is selected
   if (selectedGame) {
@@ -33,7 +29,6 @@ function Home() {
     return (
       <LeaguePage
         leagueKey={selectedLeague}
-        currentWeek={currentWeeks[selectedLeague]}
         onBack={() => setSelectedLeague(null)}
         setSelectedGame={setSelectedGame}
       />
@@ -49,7 +44,7 @@ function Home() {
           <h2 className="league-name" style={{ cursor: "pointer", color: "grey" }} onClick={() => setSelectedLeague(key)}>
             {league.name}
           </h2>
-          <GameList leagueKey={key}limit={3} currentWeek={currentWeeks[key] || 1} setSelectedGame={(game) => { setSelectedLeague(key); setSelectedGame(game);}}/>
+          <GameList leagueKey={key}limit={3} setSelectedGame={(game) => { setSelectedLeague(key); setSelectedGame(game);}}/>
         </section>
       ))}
     </div>
