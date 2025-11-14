@@ -1,17 +1,39 @@
-.title-text {
+.game-row {
+  display: grid;
+  grid-template-columns: auto 1fr auto; /* left block | center | right block */
+  align-items: center;
+  gap: 8px;
+  padding: 0.75rem 0.25rem;
+  border-bottom: 1px solid #e5e5e5;
+  cursor: pointer;
+}
+
+/* Left team: logo + name */
+.team-left {
+  display: flex;
+  align-items: center;
+  gap: 6px; /* small space between logo and name */
+}
+
+/* Right team: name + logo */
+.team-right {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  justify-content: flex-end; /* push it to the far right */
+}
+
+/* Center status */
+.game-center {
   text-align: center;
+  font-size: 0.95rem;
+  line-height: 1.2rem;
+  word-wrap: break-word;
 }
 
-.short-game {
-  margin-left: 8%;
-}
-
-.league-name {
-  width: 25px;
-}
-
+/* Logos stay the same */
 .team-logo {
-  width: 30px;
-  height: 30px;
-  vertical-align: middle;
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
 }

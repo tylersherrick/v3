@@ -23,6 +23,11 @@ export const leagues = {
     usesWeeks: false,
     logoPath: (abbr) => `https://a.espncdn.com/i/teamlogos/nba/500/${abbr}.png`,
   },
+  cbb: {
+    name: "CBB",
+    apiUrl: "https://site.api.espn.com/apis/site/v2/sports/basketball/mens-college-basketball/scoreboard",
+    useWeeks: false,
+  },
   // mlb: {
   //   name: "MLB",
   //   apiUrl: "https://site.api.espn.com/apis/site/v2/sports/baseball/mlb/scoreboard",
