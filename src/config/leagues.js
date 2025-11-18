@@ -28,6 +28,12 @@ export const leagues = {
     apiUrl: "https://site.api.espn.com/apis/site/v2/sports/basketball/mens-college-basketball/scoreboard",
     useWeeks: false,
   },
+  ch: {
+    name: "CH",
+    apiUrl: "https://site.api.espn.com/apis/site/v2/sports/hockey/mens-college-hockey/scoreboard",
+    usesWeeks: false,
+    logoPath: (abbr) => `https://a.espncdn.com/i/teamlogos/nhl/500/${abbr}.png`,
+  },
   // mlb: {
   //   name: "MLB",
   //   apiUrl: "https://site.api.espn.com/apis/site/v2/sports/baseball/mlb/scoreboard",

@@ -39,14 +39,14 @@ function Home() {
   return (
     <div>
       <h1 className="title-text">Ty's Corner</h1>
-      {Object.entries(leagues).map(([key, league]) => (
-        <section key={key}>
-          <h2 className="league-name" style={{ cursor: "pointer", color: "grey" }} onClick={() => setSelectedLeague(key)}>
-            {league.name}
-          </h2>
-          <GameList leagueKey={key}limit={3} setSelectedGame={(game) => { setSelectedLeague(key); setSelectedGame(game);}}/>
-        </section>
-      ))}
+        {Object.entries(leagues).map(([key, league]) => (
+          <section key={key}>
+            <h2 className="league-name" style={{ cursor: "pointer", color: "grey" }} onClick={() => setSelectedLeague(key)}>
+              {league.name}
+            </h2>
+            <GameList leagueKey={key}limit={3} setSelectedGame={(game) => { setSelectedLeague(key); setSelectedGame(game);}}/>
+          </section>
+        ))}
     </div>
   );
 }
