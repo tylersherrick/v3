@@ -61,7 +61,7 @@ function GameList({ leagueKey, limit, currentWeek, setSelectedGame }) {
             : "";
 
           if (gameStatus === "STATUS_SCHEDULED") status = gameTimeLocal;
-          if (["STATUS_IN_PROGRESS", "STATUS_FINAL", "STATUS_HALFTIME"].includes(gameStatus)) {
+          if (["STATUS_IN_PROGRESS", "STATUS_FINAL", "STATUS_HALFTIME", "STATUS_END_PERIOD"].includes(gameStatus)) {
             status = `${awayScore} - ${status} - ${homeScore}`;
           }
 
@@ -98,7 +98,7 @@ function GameList({ leagueKey, limit, currentWeek, setSelectedGame }) {
         let homeLogo = comp.competitors[0].team.logo;
         let awayLogo = comp.competitors[1].team.logo;
 
-        if (["CFB", "CBB"].includes(league.name)) {
+        if (["CFB", "CBB", "CH"].includes(league.name)) {
           const awayRank = comp.competitors[1].curatedRank?.current;
           const homeRank = comp.competitors[0].curatedRank?.current;
           shortAway = (awayRank && awayRank <= 25 ? ` ${awayRank}` : "") + " " + shortAway;
