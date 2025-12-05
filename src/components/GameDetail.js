@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/alt-text */
 import React, { useState, useEffect } from "react";
 import { leagues } from "../config/leagues";
 
@@ -62,13 +63,37 @@ function GameDetail({ game, leagueName, onBackToLeague, onBackToMain }) {
       })
     : "";
 
+    console.log(game);
+
   return (
     <div>
       <button onClick={onBackToLeague}>{leagueName} Games</button>
       <button onClick={onBackToMain} style={{ marginLeft: "10px" }}>All Games</button>
-      <h2>{away} at {home}</h2>
-      <p>{status} {gameTimeLocal && `- ${gameTimeLocal}`}</p>
-      {comp?.details && <p>{comp.details}</p>}
+
+      <div className="detail-game-row">
+        <div className="team-left">
+          <img src={game.competitions[0].competitors[1].team.logo} className="detail-team-logo" />
+        </div>
+        <div className="game-center">
+          <h3>at</h3>
+        </div>
+        <div className="team-right">
+          <img src={game.competitions[0].competitors[0].team.logo} className="detail-team-logo" />
+        </div>
+      </div>
+
+      <div className="game-row">
+        <div className="team-left">
+          <span>{comp.competitors[1].team.shortDisplayName}</span>
+        </div>
+        <div className="game-center">
+
+        </div>
+        <div className="team-right detail-right">
+          <span>{comp.competitors[0].team.shortDisplayName}</span>
+        </div>
+      </div>
+
     </div>
   );
 }
