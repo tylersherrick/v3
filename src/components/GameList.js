@@ -42,11 +42,11 @@ function GameList({ leagueKey, limit, currentWeek, setSelectedGame }) {
 
         // Update inner content only
         sorted.forEach((game) => {
-          const comp = game.competitions[0];
-          const gameStatus = comp.status.type.name;
-          const awayScore = comp.competitors[1].score;
-          const homeScore = comp.competitors[0].score;
-          const date = comp.date;
+          let comp = game.competitions[0];
+          let gameStatus = comp.status.type.name;
+          let awayScore = comp.competitors[1].score;
+          let homeScore = comp.competitors[0].score;
+          let date = comp.date;
 
           let status = game.status?.type?.shortDetail || "TBD";
           const gameTimeLocal = date
@@ -60,9 +60,13 @@ function GameList({ leagueKey, limit, currentWeek, setSelectedGame }) {
               })
             : "";
 
-          if (gameStatus === "STATUS_SCHEDULED") status = gameTimeLocal;
+          if (gameStatus === "STATUS_SCHEDULED") {
+            status = gameTimeLocal;
+            awayScore = "";
+            homeScore = "";
+          } 
           if (["STATUS_IN_PROGRESS", "STATUS_FINAL", "STATUS_HALFTIME", "STATUS_END_PERIOD"].includes(gameStatus)) {
-            status = `${awayScore} - ${status} - ${homeScore}`;
+            status = `${status}`;
           }
 
           const el = containerRef.current[game.id || game.uid];
@@ -97,6 +101,9 @@ function GameList({ leagueKey, limit, currentWeek, setSelectedGame }) {
         let shortHome = comp.competitors[0].team.abbreviation;
         let homeLogo = comp.competitors[0].team.logo;
         let awayLogo = comp.competitors[1].team.logo;
+        let awayScore = ` - ` + comp.competitors[1].score;
+        let homeScore = ` - ` + comp.competitors[0].score;
+        let gameStatus = comp.status.type.name;
 
         if (["CFB", "CBB", "CH"].includes(league.name)) {
           const awayRank = comp.competitors[1].curatedRank?.current;
@@ -104,6 +111,10 @@ function GameList({ leagueKey, limit, currentWeek, setSelectedGame }) {
           shortAway = (awayRank && awayRank <= 25 ? ` ${awayRank}` : "") + " " + shortAway;
           shortHome = shortHome + (homeRank && homeRank <= 25 ? ` ${homeRank}` : "");
         }
+        if (gameStatus === "STATUS_SCHEDULED") {
+            awayScore = "";
+            homeScore = "";
+        } 
 
         return (
           <div
@@ -113,18 +124,22 @@ function GameList({ leagueKey, limit, currentWeek, setSelectedGame }) {
             style={{ marginBottom: "1rem", cursor: "pointer" }}
             onClick={() => setSelectedGame && setSelectedGame(game)}
           >
-            <div className="game-row">
-              <div className="team-left">
-                <img src={awayLogo} className="team-logo" />
-                <span>{shortAway}</span>
-              </div>
-              <div className="game-center">
-                {/* Status will be updated via ref */}
-              </div>
-              <div className="team-right">
-                <span>{shortHome}</span>
-                <img src={homeLogo} className="team-logo" />
-              </div>
+            <div>
+                <div className="detail-game-row">
+                  <img src={awayLogo} className="team-logo" />
+                  <span>{away}{awayScore}</span>
+                  <div className="game-center">
+                    {/* Status will be updated via ref */}
+                  </div>  
+                </div>
+                <div className="game-row">
+                  <img src={homeLogo} className="team-logo" />
+                  <span>{home}{homeScore}</span>
+                </div>
+
+              
+              
+              
             </div>
           </div>
         );
