@@ -115,10 +115,10 @@ function GameList({ leagueKey, limit, currentWeek, setSelectedGame }) {
             awayScore = "";
             homeScore = "";
         } 
-        if(gameStatus === "STATUS_FINAL" && homeScore > awayScore) {
+        if(gameStatus === "STATUS_FINAL" && Number(homeScore.slice(3)) > Number(awayScore.slice(3))) {
             homeScore += ` ◀`;
         }
-        if(gameStatus === "STATUS_FINAL" && awayScore > homeScore) {
+        if(gameStatus === "STATUS_FINAL" && Number(awayScore.slice(3)) > Number(homeScore.slice(3))) {
             awayScore += ` ◀`;
         }
 
