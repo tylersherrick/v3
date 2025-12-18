@@ -63,7 +63,6 @@ function GameDetail({ game, leagueName, onBackToLeague, onBackToMain }) {
       })
     : "";
 
-    console.log(game);
 
   return (
     <div>
