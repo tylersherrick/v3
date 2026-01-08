@@ -95,8 +95,8 @@ function GameList({ leagueKey, limit, currentWeek, setSelectedGame }) {
     <div>
       {displayedGames.map((game) => {
         const comp = game.competitions[0];
-        const away = comp.competitors[1].team.shortDisplayName;
-        const home = comp.competitors[0].team.shortDisplayName;
+        let away = comp.competitors[1].team.shortDisplayName;
+        let home = comp.competitors[0].team.shortDisplayName;
         let shortAway = comp.competitors[1].team.abbreviation;
         let shortHome = comp.competitors[0].team.abbreviation;
         let homeLogo = comp.competitors[0].team.logo;
@@ -108,8 +108,8 @@ function GameList({ leagueKey, limit, currentWeek, setSelectedGame }) {
         if (["CFB", "CBB", "CH"].includes(league.name)) {
           const awayRank = comp.competitors[1].curatedRank?.current;
           const homeRank = comp.competitors[0].curatedRank?.current;
-          shortAway = (awayRank && awayRank <= 25 ? ` ${awayRank}` : "") + " " + shortAway;
-          shortHome = shortHome + (homeRank && homeRank <= 25 ? ` ${homeRank}` : "");
+          away = (awayRank && awayRank <= 25 ? ` ${awayRank}` : "") + " " + away;
+          home = (homeRank && homeRank <= 25 ? ` ${homeRank}` : "") + " " + home;
         }
         if (gameStatus === "STATUS_SCHEDULED") {
             awayScore = "";
