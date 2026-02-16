@@ -5,12 +5,6 @@ export const leagues = {
     usesWeeks: false,
     logoPath: (abbr) => `https://a.espncdn.com/i/teamlogos/nhl/500/${abbr}.png`,
   },
-  nfl: {
-    name: "NFL",
-    apiUrl: "https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard",
-    usesWeeks: true,
-    logoPath: (abbr) => `https://a.espncdn.com/i/teamlogos/nfl/500/${abbr}.png`,
-  },
   nba: {
     name: "NBA",
     apiUrl: "https://site.api.espn.com/apis/site/v2/sports/basketball/nba/scoreboard",
@@ -40,4 +34,10 @@ export const leagues = {
   //   usesWeeks: true,
   //   logoPath: (abbr) => `https://a.espncdn.com/i/teamlogos/ncaa/500/${abbr}.png`,
   // },
+  /* nfl: {
+    name: "NFL",
+    apiUrl: "https://site.api.espn.com/apis/site/v2/sports/football/nfl/scoreboard",
+    usesWeeks: true,
+    logoPath: (abbr) => `https://a.espncdn.com/i/teamlogos/nfl/500/${abbr}.png`,
+  }, */
 };
