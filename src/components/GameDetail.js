@@ -47,9 +47,16 @@ function GameDetail({ game, leagueName, onBackToLeague, onBackToMain }) {
   }, [game.id, league.apiUrl]);
 
   const comp = gameDetails?.competitions?.[0];
-  const away = comp?.competitors?.[1]?.team?.displayName || "Away";
-  const home = comp?.competitors?.[0]?.team?.displayName || "Home";
+  let away = comp?.competitors?.[1]?.team?.shortDisplayName || "Away";
+  let home = comp?.competitors?.[0]?.team?.shortDisplayName || "Home";
   const status = comp?.status?.type?.shortDetail || "TBD";
+
+  if (["CFB", "CBB", "CH"].includes(league.name)) {
+    const awayRank = comp.competitors[1].curatedRank?.current;
+    const homeRank = comp.competitors[0].curatedRank?.current;
+    away = (awayRank && awayRank <= 25 ? ` ${awayRank}` : "") + " " + away;
+    home = (homeRank && homeRank <= 25 ? ` ${homeRank}` : "") + " " + home;
+  }
 
   // Convert game start time to user's local timezone
   const gameTimeLocal = comp?.date
@@ -66,35 +73,48 @@ function GameDetail({ game, leagueName, onBackToLeague, onBackToMain }) {
 
   return (
     <div>
-      <button onClick={onBackToLeague}>{leagueName} Games</button>
-      <button onClick={onBackToMain} style={{ marginLeft: "10px" }}>All Games</button>
+      <button className="btn btn-secondary" onClick={onBackToLeague}>
+        {leagueName} Games
+      </button>
 
-      <div className="detail-game-row">
-        <div className="team-left">
-          <img src={game.competitions[0].competitors[1].team.logo} className="detail-team-logo" />
+      <button
+        className="btn btn-secondary"
+        onClick={onBackToMain}
+        style={{ marginLeft: "10px" }}
+      >
+        All Games
+      </button>
+
+      <div className="container">
+
+        <div className="row justify-content-center text-center">
+          <div className="col-4">
+              <img className="img-fluid" src={game.competitions[0].competitors[1].team.logo} />
+          </div>
+          <div className="col-4">
+              
+          </div>
+          <div className="col-4">
+              <img className="img-fluid" src={game.competitions[0].competitors[0].team.logo} />
+          </div>
         </div>
-        <div className="game-center">
-          <h3>at</h3>
+
+        <div className="row justify-content-center text-center">
+          <div className="col-4">
+              <h4>{away}</h4>
+          </div>
+          <div className="col-4">
+              <h4>at</h4>
+          </div>
+          <div className="col-4">
+              <h4>{home}</h4>
+          </div>
         </div>
-        <div className="team-right">
-          <img src={game.competitions[0].competitors[0].team.logo} className="detail-team-logo" />
-        </div>
+
       </div>
-
-      <div className="game-row">
-        <div className="team-left">
-          <span>{comp.competitors[1].team.shortDisplayName}</span>
-        </div>
-        <div className="game-center">
-
-        </div>
-        <div className="team-right detail-right">
-          <span>{comp.competitors[0].team.shortDisplayName}</span>
-        </div>
-      </div>
-
     </div>
   );
+
 }
 
 export default GameDetail;
