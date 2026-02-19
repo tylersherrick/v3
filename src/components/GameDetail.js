@@ -1,6 +1,11 @@
 /* eslint-disable jsx-a11y/alt-text */
 import React, { useState, useEffect } from "react";
 import { leagues } from "../config/leagues";
+import GameTabs from "./GameTabs";
+import GameInfo from "./GameInfo";
+import GameRecords from "./GameRecords";
+import GameStats from "./GameStats";
+
 
 function GameDetail({ game, leagueName, onBackToLeague, onBackToMain }) {
   const [gameDetails, setGameDetails] = useState(game);
@@ -8,6 +13,14 @@ function GameDetail({ game, leagueName, onBackToLeague, onBackToMain }) {
     (key) => leagues[key].name === leagueName
   );
   const league = leagues[leagueKey];
+
+  const [activeTab, setActiveTab] = useState("info");
+
+  const tabs = {
+    info: <GameInfo game={game} />,
+    records: <GameRecords game={game} />,
+    stats: <GameStats game={game} />,
+  };
 
   const fetchGameDetails = async () => {
     try {
@@ -72,30 +85,31 @@ function GameDetail({ game, leagueName, onBackToLeague, onBackToMain }) {
 
 
   return (
-    <div>
-      <button className="btn btn-secondary" onClick={onBackToLeague}>
-        {leagueName} Games
-      </button>
-
-      <button
-        className="btn btn-secondary"
-        onClick={onBackToMain}
-        style={{ marginLeft: "10px" }}
-      >
-        All Games
-      </button>
-
       <div className="container">
 
-        <div className="row justify-content-center text-center">
-          <div className="col-4">
-              <img className="img-fluid" src={game.competitions[0].competitors[1].team.logo} />
-          </div>
-          <div className="col-4">
-              
-          </div>
-          <div className="col-4">
-              <img className="img-fluid" src={game.competitions[0].competitors[0].team.logo} />
+        <button className="btn btn-secondary" onClick={onBackToLeague}>
+          {leagueName} Games
+        </button>
+
+        <button
+          className="btn btn-secondary"
+          onClick={onBackToMain}
+          style={{ marginLeft: "10px" }}
+        >
+          All Games
+        </button>
+
+        <div style={{ marginTop: "25px" }}>
+          <div className="row justify-content-center text-center ">
+            <div className="col-4">
+                <img className="img-fluid" src={game.competitions[0].competitors[1].team.logo} />
+            </div>
+            <div className="col-4">
+                
+            </div>
+            <div className="col-4">
+                <img className="img-fluid" src={game.competitions[0].competitors[0].team.logo} />
+            </div>
           </div>
         </div>
 
@@ -111,8 +125,41 @@ function GameDetail({ game, leagueName, onBackToLeague, onBackToMain }) {
           </div>
         </div>
 
+        <div style={{ marginTop: "35px" }}>
+          <span className="horizontal-border"></span>
+          <div className="row justify-content-center text-center">
+            <div
+              className="col stat-tab"
+              onClick={() => setActiveTab("info")}
+            >
+              <h5>Info</h5>
+            </div>
+            <div
+              className="col with-border stat-tab"
+              onClick={() => setActiveTab("records")}
+            >
+              <h5>Records</h5>
+            </div>
+            <div
+              className="col with-border stat-tab"
+              onClick={() => setActiveTab("stats")}
+            >
+              <h5>Stats</h5>
+            </div>
+          </div>
+        </div>
+
+        <span className="horizontal-border"></span>
+
+        <div>
+          <GameTabs activeTab={activeTab} setActiveTab={setActiveTab} />
+          
+          {/* Show the currently active tab */}
+          {tabs[activeTab]}
+        </div>
+
+
       </div>
-    </div>
   );
 
 }
