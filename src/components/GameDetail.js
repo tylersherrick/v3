@@ -81,8 +81,8 @@ function GameDetail({ game, leagueName, onBackToLeague, onBackToMain }) {
   // Convert game start time to user's local timezone
   const gameTimeLocal = comp?.date
     ? new Date(comp.date).toLocaleString(undefined, {
-        weekday: "long",
-        month: "long",
+        
+        month: "short",
         day: "numeric",
         hour: "numeric",
         minute: "2-digit",
