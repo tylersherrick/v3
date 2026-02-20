@@ -142,10 +142,6 @@ function GameList({ leagueKey, limit, currentWeek, setSelectedGame }) {
                   <img src={homeLogo} className="team-logo" />
                   <span>{home}{homeScore}</span>
                 </div>
-
-              
-              
-              
             </div>
           </div>
         );

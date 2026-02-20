@@ -62,7 +62,14 @@ function GameDetail({ game, leagueName, onBackToLeague, onBackToMain }) {
   const comp = gameDetails?.competitions?.[0];
   let away = comp?.competitors?.[1]?.team?.shortDisplayName || "Away";
   let home = comp?.competitors?.[0]?.team?.shortDisplayName || "Home";
+  let shortAway = comp.competitors[1].team.abbreviation;
+  let shortHome = comp.competitors[0].team.abbreviation;
   const status = comp?.status?.type?.shortDetail || "TBD";
+  let longerStatus = comp.status.type.detail;
+  let awayScore = comp.competitors[1].score;
+  let homeScore = comp.competitors[0].score;
+  let gameStatus = comp.status.type.name;
+  let scoreBlock = "";
 
   if (["CFB", "CBB", "CH"].includes(league.name)) {
     const awayRank = comp.competitors[1].curatedRank?.current;
@@ -74,14 +81,45 @@ function GameDetail({ game, leagueName, onBackToLeague, onBackToMain }) {
   // Convert game start time to user's local timezone
   const gameTimeLocal = comp?.date
     ? new Date(comp.date).toLocaleString(undefined, {
-        weekday: "short",
-        month: "short",
+        weekday: "long",
+        month: "long",
         day: "numeric",
         hour: "numeric",
         minute: "2-digit",
         hour12: true,
       })
     : "";
+
+  if (gameStatus != "STATUS_SCHEDULED") {
+      scoreBlock = 
+        <div style={{ marginTop: "20px" }}>
+          <div className="row justify-content-center text-center">
+            <div className="col">
+              
+            </div>
+            <div className="col">
+              <h5>{awayScore} - {homeScore}</h5>
+            </div>
+            <div className="col">
+              
+            </div>
+          </div>
+        <div style={{ marginTop: "20px" }}>
+          <div className="row justify-content-center text-center">
+            <h6>{status}</h6>
+          </div>
+        </div>
+      </div>
+  
+  } else {
+    scoreBlock = 
+      <div style={{ marginTop: "20px" }}>
+        <div className="row justify-content-center text-center">
+          <h6>{gameTimeLocal}</h6>
+        </div>
+      </div>
+    ;
+  }
 
 
   return (
@@ -114,16 +152,18 @@ function GameDetail({ game, leagueName, onBackToLeague, onBackToMain }) {
         </div>
 
         <div className="row justify-content-center text-center">
-          <div className="col-4">
+          <div className="col-4 team-names">
               <h4>{away}</h4>
           </div>
-          <div className="col-4">
+          <div className="col-4 team-names">
               <h4>at</h4>
           </div>
-          <div className="col-4">
+          <div className="col-4 team-names">
               <h4>{home}</h4>
           </div>
         </div>
+
+        <div>{scoreBlock}</div>
 
         <div style={{ marginTop: "35px" }}>
           <span className="horizontal-border"></span>
