@@ -59,6 +59,8 @@ function GameDetail({ game, leagueName, onBackToLeague, onBackToMain }) {
     return () => clearInterval(interval);
   }, [game.id, league.apiUrl]);
 
+  console.log(game);
+
   const comp = gameDetails?.competitions?.[0];
   let away = comp?.competitors?.[1]?.team?.shortDisplayName || "Away";
   let home = comp?.competitors?.[0]?.team?.shortDisplayName || "Home";
@@ -117,6 +119,14 @@ function GameDetail({ game, leagueName, onBackToLeague, onBackToMain }) {
         <div className="row justify-content-center text-center">
           <h6>{gameTimeLocal}</h6>
         </div>
+      </div>
+    ;
+  }
+
+  if(["CH"].includes(league.name)) {
+    tabs.records = 
+      <div className="row justify-content-center text-center">
+        <h5>Team records unavailable for this league</h5>
       </div>
     ;
   }
