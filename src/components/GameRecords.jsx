@@ -1,11 +1,11 @@
 const GameRecords = ({game}) => {
 
-  let awayOverall = game?.competitions?.[0]?.competitors?.[0]?.records?.[0]?.summary ?? "";
-  let homeOverall = game?.competitions?.[0]?.competitors?.[1]?.records?.[0]?.summary ?? "";
-  let awayHomeRecord = game?.competitions?.[0]?.competitors?.[0]?.records?.[1]?.summary ?? "";
-  let homeHomeRecord = game?.competitions?.[0]?.competitors?.[1]?.records?.[1]?.summary ?? "";
-  let awayAwayRecord = game?.competitions?.[0]?.competitors?.[0]?.records?.[2]?.summary ?? "";
-  let homeAwayRecord = game?.competitions?.[0]?.competitors?.[1]?.records?.[2]?.summary ?? "";
+  let awayOverall = game?.competitions?.[0]?.competitors?.[1]?.records?.[0]?.summary ?? "";
+  let homeOverall = game?.competitions?.[0]?.competitors?.[0]?.records?.[0]?.summary ?? "";
+  let awayHomeRecord = game?.competitions?.[0]?.competitors?.[1]?.records?.[1]?.summary ?? "";
+  let homeHomeRecord = game?.competitions?.[0]?.competitors?.[0]?.records?.[1]?.summary ?? "";
+  let awayAwayRecord = game?.competitions?.[0]?.competitors?.[1]?.records?.[2]?.summary ?? "";
+  let homeAwayRecord = game?.competitions?.[0]?.competitors?.[0]?.records?.[2]?.summary ?? "";
 
   return (
     <div className="container">
