@@ -19,7 +19,7 @@ function GameDetail({ game, leagueName, onBackToLeague, onBackToMain }) {
   const tabs = {
     info: <GameInfo game={game} />,
     records: <GameRecords game={game} />,
-    stats: <GameStats game={game} />,
+    stats: <GameStats game={game} leagueName={leagueName} />,
   };
 
   const fetchGameDetails = async () => {
@@ -129,7 +129,13 @@ function GameDetail({ game, leagueName, onBackToLeague, onBackToMain }) {
         <h5>Team records unavailable for this league</h5>
       </div>
     ;
+    tabs.stats = 
+      <div className="row justify-content-center text-center">
+        <h5>Team stats unavailable for this league</h5>
+      </div>
+    ;
   }
+  
 
 
   return (

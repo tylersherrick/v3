@@ -13,7 +13,7 @@ const GameRecords = ({game}) => {
         <h5>Team Records</h5>
       </div>
 
-      <div style={{ marginTop: "45px" }}></div>
+      <div style={{ marginTop: "30px" }}></div>
 
       <div className="row justify-content-center text-center">
 
