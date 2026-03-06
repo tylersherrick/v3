@@ -3,21 +3,21 @@ const GameStats = ({game, leagueName}) => {
   let shortAway = game.competitions[0].competitors[1].team.abbreviation;
   let shortHome = game.competitions[0].competitors[0].team.abbreviation;
   let awayLeaders = {
-    goalLeader: game.competitions[0].competitors[1].leaders[0].leaders[0].athlete.shortName,
-    goals: game.competitions[0].competitors[1].leaders[0].leaders[0].value,
-    assistLeader: game.competitions[0].competitors[1].leaders[1].leaders[0].athlete.shortName,
-    assists: game.competitions[0].competitors[1].leaders[1].leaders[0].value,
-    pointsLeader: game.competitions[0].competitors[1].leaders[2].leaders[0].athlete.shortName,
-    points: game.competitions[0].competitors[1].leaders[2].leaders[0].value
+    goalLeader: game.competitions[0].competitors[1].leaders[0].leaders[0].athlete.shortName || "",
+    goals: game.competitions[0].competitors[1].leaders[0].leaders[0].value || "No goals scored yet",
+    assistLeader: game.competitions[0].competitors[1].leaders[1].leaders[0].athlete.shortName || "", 
+    assists: game.competitions[0].competitors[1].leaders[1].leaders[0].value || "No assists yet",
+    pointsLeader: game.competitions[0].competitors[1].leaders[2].leaders[0].athlete.shortName || "",
+    points: game.competitions[0].competitors[1].leaders[2].leaders[0].value || "No points yet"
   }
 
   let homeLeaders = {
-    goalLeader: game.competitions[0].competitors[0].leaders[0].leaders[0].athlete.shortName,
-    goals: game.competitions[0].competitors[0].leaders[0].leaders[0].value,
-    assistLeader: game.competitions[0].competitors[0].leaders[1].leaders[0].athlete.shortName,
-    assists: game.competitions[0].competitors[0].leaders[1].leaders[0].value,
-    pointsLeader: game.competitions[0].competitors[0].leaders[2].leaders[0].athlete.shortName,
-    points: game.competitions[0].competitors[0].leaders[2].leaders[0].value
+    goalLeader: game.competitions[0].competitors[0].leaders[0].leaders[0].athlete.shortName || "",
+    goals: game.competitions[0].competitors[0].leaders[0].leaders[0].value || "No goals scored yet",
+    assistLeader: game.competitions[0].competitors[0].leaders[1].leaders[0].athlete.shortName || "",
+    assists: game.competitions[0].competitors[0].leaders[1].leaders[0].value || "No assists yet",
+    pointsLeader: game.competitions[0].competitors[0].leaders[2].leaders[0].athlete.shortName || "",
+    points: game.competitions[0].competitors[0].leaders[2].leaders[0].value || "No points yet"
   }
 
   let statData = "";
@@ -80,7 +80,7 @@ const GameStats = ({game, leagueName}) => {
 
       <div style={{ marginTop: "30px" }}></div>
 
-      {statData}
+      <div className="stats-data">{statData}</div>
   
     </div>
   );

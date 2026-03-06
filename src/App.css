@@ -85,4 +85,6 @@
   cursor: pointer;
 }
 
-
+.stats-data {
+  font-size: .94rem;
+}

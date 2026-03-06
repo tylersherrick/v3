@@ -1,7 +1,6 @@
 /* eslint-disable jsx-a11y/alt-text */
 import React, { useState, useEffect } from "react";
 import { leagues } from "../config/leagues";
-import GameTabs from "./GameTabs";
 import GameInfo from "./GameInfo";
 import GameRecords from "./GameRecords";
 import GameStats from "./GameStats";
@@ -207,10 +206,7 @@ function GameDetail({ game, leagueName, onBackToLeague, onBackToMain }) {
 
         <span className="horizontal-border"></span>
 
-        <div>
-          <GameTabs activeTab={activeTab} setActiveTab={setActiveTab} />
-          
-          {/* Show the currently active tab */}
+        <div>          
           {tabs[activeTab]}
         </div>
 
