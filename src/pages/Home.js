@@ -8,7 +8,6 @@ function Home() {
   const [selectedLeague, setSelectedLeague] = useState(null);
   const [selectedGame, setSelectedGame] = useState(null);
 
-  // ✅ If a single game is selected
   if (selectedGame) {
     const league = leagues[selectedLeague];
     return (
@@ -24,7 +23,6 @@ function Home() {
     );
   }
 
-  // ✅ If a full league page is open
   if (selectedLeague) {
     return (
       <LeaguePage
@@ -35,7 +33,6 @@ function Home() {
     );
   }
 
-  // ✅ Default all-league preview
   return (
     <div>
       <h1 className="title-text">Ty's Corner</h1>
