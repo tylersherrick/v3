@@ -33,6 +33,7 @@ function Home() {
     );
   }
 
+
   return (
     <div>
       <h1 className="title-text">Ty's Corner</h1>
