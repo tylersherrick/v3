@@ -17,12 +17,12 @@ export const leagues = {
     usesWeeks: false,
     logoPath: (abbr) => `https://a.espncdn.com/i/teamlogos/nba/500/${abbr}.png`,
   },
-  ch: {
-    name: "CH",
-    apiUrl: "https://site.api.espn.com/apis/site/v2/sports/hockey/mens-college-hockey/scoreboard",
-    usesWeeks: false,
-    logoPath: (abbr) => `https://a.espncdn.com/i/teamlogos/nhl/500/${abbr}.png`,
-  },
+  // ch: {
+  //   name: "CH",
+  //   apiUrl: "https://site.api.espn.com/apis/site/v2/sports/hockey/mens-college-hockey/scoreboard",
+  //   usesWeeks: false,
+  //   logoPath: (abbr) => `https://a.espncdn.com/i/teamlogos/nhl/500/${abbr}.png`,
+  // },
   // cfb: {
   //   name: "CFB",
   //   apiUrl: "https://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard",
