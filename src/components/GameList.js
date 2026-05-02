@@ -27,7 +27,6 @@ function GameList({ leagueKey, limit, currentWeek, setSelectedGame }) {
         if (!res.ok) throw new Error("Failed to fetch games");
 
         const data = await res.json();
-
         const sorted = (data.events || []).sort((a, b) => {
           const aFinal = a.competitions[0].status.type.name === "STATUS_FINAL";
           const bFinal = b.competitions[0].status.type.name === "STATUS_FINAL";
@@ -69,6 +68,15 @@ function GameList({ leagueKey, limit, currentWeek, setSelectedGame }) {
             status = `${status}`;
           }
 
+          let gameType = comp.series?.type ?? "";
+          let homeWins = comp.series?.competitors?.[0]?.wins ?? 0;
+          let awayWins = comp.series?.competitors?.[1]?.wins ?? 0;
+          let seriesCount = "";
+
+          if(gameType === "playoff") {
+            seriesCount = `Home ${homeWins} - ${awayWins} Away`;
+        }
+
           const el = containerRef.current[game.id || game.uid];
           if (el) {
             el.querySelector(".game-center").textContent = status;
@@ -104,6 +112,14 @@ function GameList({ leagueKey, limit, currentWeek, setSelectedGame }) {
         let awayScore = ` - ` + comp.competitors[1].score;
         let homeScore = ` - ` + comp.competitors[0].score;
         let gameStatus = comp.status.type.name;
+        let gameType = comp.series?.type ?? "";
+        let homeWins = comp.series?.competitors?.[0]?.wins ?? 0;
+        let awayWins = comp.series?.competitors?.[1]?.wins ?? 0;
+        let seriesCount = "";
+
+        if(gameType === "playoff") {
+          seriesCount = `Home ${homeWins} - ${awayWins} Away`;
+        }
 
         if (["CFB", "CBB", "CH"].includes(league.name)) {
           const awayRank = comp.competitors[1].curatedRank?.current;
